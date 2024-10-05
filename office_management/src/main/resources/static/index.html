@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tab Interface Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .tab {
+            overflow: hidden;
+            background-color: #f1f1f1;
+        }
+        .tablinks {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+        .tablinks:hover {
+            background-color: #ddd;
+        }
+        .tablinks.active {
+            background-color: #ccc;
+        }
+        .tabcontent {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Company Management System</h1>
+
+<div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'Companies')">Companies</button>
+    <button class="tablinks" onclick="openTab(event, 'CompanyEmployees')">Company Employees</button>
+    <button class="tablinks" onclick="openTab(event, 'AccessCards')">Access Cards</button>
+    <button class="tablinks" onclick="openTab(event, 'AccessHistory')">Access History</button>
+    <button class="tablinks" onclick="openTab(event, 'BuildingEmployees')">Building Employees</button>
+    <button class="tablinks" onclick="openTab(event, 'EmployeeSalaries')">Employee Salaries</button>
+    <button class="tablinks" onclick="openTab(event, 'Services')">Services</button>
+    <button class="tablinks" onclick="openTab(event, 'ServiceAssignments')">Service Assignments</button>
+    <button class="tablinks" onclick="openTab(event, 'ServiceUsages')">Service Usages</button>
+</div>
+
+<div id="Companies" class="tabcontent"></div>
+<div id="CompanyEmployees" class="tabcontent"></div>
+<div id="AccessCards" class="tabcontent"></div>
+<div id="AccessHistory" class="tabcontent"></div>
+<div id="BuildingEmployees" class="tabcontent"></div>
+<div id="EmployeeSalaries" class="tabcontent"></div>
+<div id="Services" class="tabcontent"></div>
+<div id="ServiceAssignments" class="tabcontent"></div>
+<div id="ServiceUsages" class="tabcontent"></div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
