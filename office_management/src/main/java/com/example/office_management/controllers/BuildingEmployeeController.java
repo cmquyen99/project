@@ -19,8 +19,5 @@ public class BuildingEmployeeController {
         return buildingEmployeeService.getAllBuildingEmployees();
     }
 
-    @PostMapping
-    public BuildingEmployee createBuildingEmployee(@RequestBody BuildingEmployee employee) {
-        return buildingEmployeeService.saveBuildingEmployee(employee);
-    }
+
 }

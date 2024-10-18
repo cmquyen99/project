@@ -10,17 +10,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/services")
 @CrossOrigin(origins = "http://localhost:8234")
-public class ServicesController {
+class ServicesController {
     @Autowired
-    private ServicesService servicesService;
+    private ServicesService serviceService;
 
     @GetMapping
     public List<Services> getAllServices() {
-        return servicesService.getAllServices();
+        return serviceService.getAllServices();
     }
 
-    @PostMapping
-    public Services createService(@RequestBody Services services) {
-        return servicesService.saveService(services);
-    }
+
 }

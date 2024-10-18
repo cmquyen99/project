@@ -16,11 +16,9 @@ public class EmployeeSalaryController {
 
     @GetMapping
     public List<EmployeeSalary> getAllEmployeeSalaries() {
-        return employeeSalaryService.getAllEmployeeSalaries();
+        List<EmployeeSalary> salaries = employeeSalaryService.getAllEmployeeSalaries();
+        System.out.println("Returning " + salaries.size() + " employee salaries");
+        return salaries;
     }
 
-    @PostMapping
-    public EmployeeSalary createEmployeeSalary(@RequestBody EmployeeSalary salary) {
-        return employeeSalaryService.saveEmployeeSalary(salary);
-    }
 }

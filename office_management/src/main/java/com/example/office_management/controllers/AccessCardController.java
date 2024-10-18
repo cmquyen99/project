@@ -19,8 +19,4 @@ public class AccessCardController {
         return accessCardService.getAllAccessCards();
     }
 
-    @PostMapping
-    public AccessCard createAccessCard(@RequestBody AccessCard accessCard) {
-        return accessCardService.saveAccessCard(accessCard);
-    }
 }

@@ -9,14 +9,19 @@ public class Services {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long serviceId;
+
     private BigDecimal basePrice;
     private String serviceName;
+    private String serviceType;
 
-    @Enumerated(EnumType.STRING)
-    private ServiceType serviceType;
 
-    public enum ServiceType {
-        VE_SINH, BAO_VE, AN_UONG, TRONG_GIU_XE, BAO_TRI_THIET_BI
+    // Constructors
+    public Services() {}
+
+    public Services(BigDecimal basePrice, String serviceName, String serviceType, boolean mandatory) {
+        this.basePrice = basePrice;
+        this.serviceName = serviceName;
+        this.serviceType = serviceType;
     }
 
     // Getters and setters
@@ -26,6 +31,7 @@ public class Services {
     public void setBasePrice(BigDecimal basePrice) { this.basePrice = basePrice; }
     public String getServiceName() { return serviceName; }
     public void setServiceName(String serviceName) { this.serviceName = serviceName; }
-    public ServiceType getServiceType() { return serviceType; }
-    public void setServiceType(ServiceType serviceType) { this.serviceType = serviceType; }
+    public String getServiceType() { return serviceType; }
+    public void setServiceType(String serviceType) { this.serviceType = serviceType; }
+
 }

@@ -28,14 +28,8 @@ function openTab(evt, tabName) {
 }
 
 function fetchData(endpoint) {
-    console.log(`Fetching data from ${API_URL}/${endpoint}`);
     return fetch(`${API_URL}/${endpoint}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        })
+        .then(response => response.json())
         .catch(error => {
             console.error('Error:', error);
             document.getElementById(endpoint).innerHTML = `<p>Error loading data: ${error.message}</p>`;
@@ -53,14 +47,14 @@ function displayData(data, elementId, columns) {
     columns.forEach(column => {
         tableHtml += `<th>${column.header}</th>`;
     });
-    tableHtml += `<th>Actions</th></tr></thead><tbody>`;
+    // tableHtml += `<th>Actions</th></tr></thead><tbody>`;
 
     data.forEach(item => {
         tableHtml += `<tr>`;
         columns.forEach(column => {
             tableHtml += `<td>${column.value(item)}</td>`;
         });
-        tableHtml += `<td><button onclick="editItem('${elementId}', ${item.id})">Edit</button> <button onclick="deleteItem('${elementId}', ${item.id})">Delete</button></td></tr>`;
+        // tableHtml += `<td><button onclick="editItem('${elementId}', ${item.id})">Edit</button> <button onclick="deleteItem('${elementId}', ${item.id})">Delete</button></td></tr>`;
     });
 
     tableHtml += `</tbody></table>`;
@@ -72,6 +66,8 @@ function loadCompanies() {
         displayData(companies, 'Companies', [
             { header: 'Company Name', value: item => item.companyName },
             { header: 'Business Field', value: item => item.businessField },
+            { header: 'Charter Capital', value: item => item.charterCapital },
+            { header: 'Floor Area (m2)', value: item => item.floorArea},
             { header: 'Employee Count', value: item => item.employeeCount }
         ]);
     });
@@ -162,27 +158,103 @@ function loadServiceUsages() {
         ]);
     });
 }
+function loadBuildingAccessList() {
+    const startDate = document.getElementById('start-date').value;
+    const endDate = document.getElementById('end-date').value;
 
-function editItem(entityType, id) {
-    console.log(`Editing ${entityType} with id ${id}`);
-    // Implement edit functionality
+    let url = `${API_URL}/access-history/building-access-list`;
+    if (startDate) url += `?start=${encodeURIComponent(startDate)}`;
+    if (endDate) url += `${startDate ? '&' : '?'}end=${encodeURIComponent(endDate)}`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            displayBuildingAccessList(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('building-access-list-content').innerHTML = `<p>Error loading data: ${error.message}</p>`;
+        });
 }
 
-function deleteItem(entityType, id) {
-    if (confirm(`Are you sure you want to delete this ${entityType.slice(0, -1)}?`)) {
-        fetch(`${API_URL}/${entityType.toLowerCase()}/${id}`, { method: 'DELETE' })
-            .then(() => {
-                alert('Item deleted successfully');
-                openTab(null, entityType); // Refresh the current tab
-            })
-            .catch(error => console.error('Error:', error));
+function displayBuildingAccessList(data) {
+    const content = document.getElementById('building-access-list-content');
+    if (data.length === 0) {
+        content.innerHTML = '<p>No data found.</p>';
+        return;
     }
+
+    let tableHtml = `
+        <table>
+            <thead>
+                <tr>
+                    <th>Employee Name</th>
+                    <th>Company Name</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+
+    data.forEach(item => {
+        tableHtml += `
+            <tr>
+                <td>${item.employeeName}</td>
+                <td>${item.companyName}</td>
+                <td><button onclick="showAccessDetails(${JSON.stringify(item.accessDetails).replace(/"/g, '&quot;')})">View Details</button></td>
+            </tr>
+        `;
+    });
+
+    tableHtml += `
+            </tbody>
+        </table>
+    `;
+
+    content.innerHTML = tableHtml;
 }
 
+function showAccessDetails(details) {
+    let detailsHtml = `
+        <table>
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Type</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+
+    details.forEach(detail => {
+        detailsHtml += `
+            <tr>
+                <td>${new Date(detail.time).toLocaleString()}</td>
+                <td>${detail.type}</td>
+                <td>${detail.location}</td>
+            </tr>
+        `;
+    });
+
+    detailsHtml += `
+            </tbody>
+        </table>
+    `;
+
+    // Hiển thị chi tiết trong một modal hoặc một phần tử khác trên trang
+    // Ví dụ: sử dụng alert để hiển thị (trong thực tế, bạn có thể sử dụng một modal đẹp hơn)
+    alert(detailsHtml);
+}
+
+// Thêm BuildingAccessList vào danh sách các tab được khởi tạo
+window.onload = function() {
+    document.getElementsByClassName("tablinks")[0].click();
+    // Đặt giá trị mặc định cho trường ngày
+    document.getElementById('start-date').value = new Date(new Date().setFullYear(new Date().getFullYear() - 1)).toISOString().slice(0, 16);
+    document.getElementById('end-date').value = new Date().toISOString().slice(0, 16);
+};
 // Open the Companies tab by default when the page loads
 window.onload = function() {
-    const tabLinks = document.getElementsByClassName('tablinks');
-    if (tabLinks.length > 0) {
-        tabLinks[0].click(); // Simulates a click on the first tab to load data
-    }
+    document.getElementsByClassName("tablinks")[0].click();
 };

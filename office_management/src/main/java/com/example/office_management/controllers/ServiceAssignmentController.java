@@ -19,8 +19,4 @@ public class ServiceAssignmentController {
         return serviceAssignmentService.getAllServiceAssignments();
     }
 
-    @PostMapping
-    public ServiceAssignment createServiceAssignment(@RequestBody ServiceAssignment assignment) {
-        return serviceAssignmentService.saveServiceAssignment(assignment);
-    }
 }

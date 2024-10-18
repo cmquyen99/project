@@ -19,8 +19,4 @@ public class ServiceUsageController {
         return serviceUsageService.getAllServiceUsages();
     }
 
-    @PostMapping
-    public ServiceUsage createServiceUsage(@RequestBody ServiceUsage usage) {
-        return serviceUsageService.saveServiceUsage(usage);
-    }
 }

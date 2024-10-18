@@ -3,53 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tab Interface Example</title>
+    <title>Office Management System</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .tab {
-            overflow: hidden;
-            background-color: #f1f1f1;
-        }
-        .tablinks {
-            background-color: inherit;
-            float: left;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            padding: 14px 16px;
-            transition: 0.3s;
-        }
-        .tablinks:hover {
-            background-color: #ddd;
-        }
-        .tablinks.active {
-            background-color: #ccc;
-        }
-        .tabcontent {
-            display: none;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-top: none;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
+        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        button { cursor: pointer; padding: 5px 10px; margin: 5px; }
+        .tab { overflow: hidden; border: 1px solid #ccc; background-color: #f1f1f1; }
+        .tab button { background-color: inherit; float: left; border: none; cursor: pointer; padding: 14px 16px; transition: 0.3s; }
+        .tab button:hover { background-color: #ddd; }
+        .tab button.active { background-color: #ccc; }
+        .tabcontent { display: none; padding: 6px 12px; border: 1px solid #ccc; border-top: none; }
     </style>
 </head>
 <body>
-
-<h1>Company Management System</h1>
+<h1>Office Management System</h1>
 
 <div class="tab">
     <button class="tablinks" onclick="openTab(event, 'Companies')">Companies</button>
@@ -61,6 +30,7 @@
     <button class="tablinks" onclick="openTab(event, 'Services')">Services</button>
     <button class="tablinks" onclick="openTab(event, 'ServiceAssignments')">Service Assignments</button>
     <button class="tablinks" onclick="openTab(event, 'ServiceUsages')">Service Usages</button>
+    <button class="tablinks" onclick="openTab(event, 'BuildingAccessList')">Building Access List</button>
 </div>
 
 <div id="Companies" class="tabcontent"></div>
@@ -72,6 +42,17 @@
 <div id="Services" class="tabcontent"></div>
 <div id="ServiceAssignments" class="tabcontent"></div>
 <div id="ServiceUsages" class="tabcontent"></div>
+<div id="BuildingAccessList" class="tabcontent">
+    <h2>Building Access List</h2>
+    <div class="date-range">
+        <label for="start-date">Start Date:</label>
+        <input type="datetime-local" id="start-date">
+        <label for="end-date">End Date:</label>
+        <input type="datetime-local" id="end-date">
+        <button onclick="loadBuildingAccessList()">Load</button>
+    </div>
+    <div id="building-access-list-content"></div>
+</div>
 
 <script src="js/app.js"></script>
 </body>

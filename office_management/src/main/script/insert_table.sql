@@ -1,4 +1,4 @@
-USE office_management_db;
+USE office_building_management;
 
 -- Insert sample data for Company table
 INSERT INTO Company (company_name, tax_code, charter_capital, business_field, employee_count, office_address, phone_number, floor_area)
@@ -45,15 +45,18 @@ INSERT INTO Access_History (card_id, access_time, access_point, access_type)
 VALUES
     (1, '2024-01-02 08:00:00', 'Tầng 1', 'IN'),
     (1, '2024-01-02 17:30:00', 'Tầng 1', 'OUT'),
+    (1, '2024-01-02 08:00:00', 'Tầng 1', 'IN'),
+    (1, '2024-01-02 17:30:00', 'Tầng 1', 'OUT'),
     (2, '2024-01-02 08:15:00', 'Hầm B1', 'IN'),
     (2, '2024-01-02 18:00:00', 'Hầm B1', 'OUT');
+
 
 -- Insert sample data for ServiceAssignment table
 INSERT INTO Service_Assignment (employee_id, service_id)
 VALUES (1, 1), (2, 2);
 
 -- Insert sample data for EmployeeSalary table
-INSERT INTO Employee_Salary (employee_id, month, year, base_salary, service_bonus, total_salary)
+INSERT INTO Employee_Salary (employee_id, salary_month, year, base_salary, service_bonus, total_salary)
 VALUES
     (1, 1, 2024, 5000000, 500000, 5500000),
     (2, 1, 2024, 6000000, 600000, 6600000);

@@ -9,7 +9,8 @@ import java.util.Objects;
 public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long CompanyId;
+    private Long companyId; // Đổi tên biến cho thống nhất về quy tắc đặt tên
+
     private String companyName;
     private String businessField;
     private BigDecimal charterCapital;
@@ -36,22 +37,30 @@ public class Company {
     }
 
     // Getters and Setters
-    public Long getId() { return CompanyId; }
-    public void setId(Long CompanyId) { this.CompanyId = CompanyId; }
+    public Long getCompanyId() { return companyId; }
+    public void setCompanyId(Long companyId) { this.companyId = companyId; }
+
     public String getCompanyName() { return companyName; }
     public void setCompanyName(String companyName) { this.companyName = companyName; }
+
     public String getBusinessField() { return businessField; }
     public void setBusinessField(String businessField) { this.businessField = businessField; }
+
     public BigDecimal getCharterCapital() { return charterCapital; }
     public void setCharterCapital(BigDecimal charterCapital) { this.charterCapital = charterCapital; }
+
     public Integer getEmployeeCount() { return employeeCount; }
     public void setEmployeeCount(Integer employeeCount) { this.employeeCount = employeeCount; }
+
     public BigDecimal getFloorArea() { return floorArea; }
     public void setFloorArea(BigDecimal floorArea) { this.floorArea = floorArea; }
+
     public String getOfficeAddress() { return officeAddress; }
     public void setOfficeAddress(String officeAddress) { this.officeAddress = officeAddress; }
+
     public String getPhoneNumber() { return phoneNumber; }
     public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
+
     public String getTaxCode() { return taxCode; }
     public void setTaxCode(String taxCode) { this.taxCode = taxCode; }
 
@@ -61,7 +70,7 @@ public class Company {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Company company = (Company) o;
-        return Objects.equals(CompanyId, company.CompanyId) &&
+        return Objects.equals(companyId, company.companyId) &&
                 Objects.equals(companyName, company.companyName) &&
                 Objects.equals(businessField, company.businessField) &&
                 Objects.equals(charterCapital, company.charterCapital) &&
@@ -74,14 +83,14 @@ public class Company {
 
     @Override
     public int hashCode() {
-        return Objects.hash(CompanyId, companyName, businessField, charterCapital, employeeCount,
+        return Objects.hash(companyId, companyName, businessField, charterCapital, employeeCount,
                 floorArea, officeAddress, phoneNumber, taxCode);
     }
 
     @Override
     public String toString() {
         return "Company{" +
-                "CompanyId=" + CompanyId +
+                "companyId=" + companyId +
                 ", companyName='" + companyName + '\'' +
                 ", businessField='" + businessField + '\'' +
                 ", charterCapital=" + charterCapital +

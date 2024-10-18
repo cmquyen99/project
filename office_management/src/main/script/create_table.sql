@@ -1,6 +1,6 @@
 -- Create tables with inline foreign keys
-CREATE DATABASE IF NOT EXISTS office_management_db;
-
+CREATE DATABASE IF NOT EXISTS office_building_management;
+# USE office_building_management;
 CREATE TABLE company
 (
     company_id      BIGINT  NOT NULL AUTO_INCREMENT,
@@ -77,7 +77,7 @@ CREATE TABLE services
     service_id   BIGINT NOT NULL AUTO_INCREMENT,
     base_price   DECIMAL(38, 2),
     service_name VARCHAR(255),
-    service_type ENUM ('Vệ sinh','Bảo vệ','Ăn uống','Trông giữ xe','Bảo trì thiết bị'),
+    service_type VARCHAR(255),
     PRIMARY KEY (service_id)
 ) ENGINE = InnoDB;
 

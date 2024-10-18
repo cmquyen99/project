@@ -18,4 +18,5 @@ public class ServiceUsageService {
     public ServiceUsage saveServiceUsage(ServiceUsage usage) {
         return serviceUsageRepository.save(usage);
     }
+
 }

@@ -8,11 +8,22 @@ import java.math.BigDecimal;
 public class EmployeeSalary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "salary_id")
     private Long salaryId;
+
+    @Column(name = "base_salary")
     private BigDecimal baseSalary;
+
+    @Column(name = "salary_month")
     private Integer salaryMonth;
+
+    @Column(name = "service_bonus")
     private BigDecimal serviceBonus;
+
+    @Column(name = "total_salary")
     private BigDecimal totalSalary;
+
+    @Column(name = "year")
     private Integer year;
 
     @ManyToOne

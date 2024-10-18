@@ -19,8 +19,5 @@ public class CompanyEmployeeController {
         return companyEmployeeService.getAllCompanyEmployees();
     }
 
-    @PostMapping
-    public CompanyEmployee createCompanyEmployee(@RequestBody CompanyEmployee employee) {
-        return companyEmployeeService.saveCompanyEmployee(employee);
-    }
+
 }
